@@ -1000,6 +1000,20 @@ fab.addEventListener('click', () => {
   if (panel.classList.contains('open')) document.getElementById('cp-input').focus();
 });
 
+// ── Auto-open on load with greeting ──
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    fab.classList.add('open');
+    panel.classList.add('open');
+    const unread = fab.querySelector('.chat-unread');
+    if (unread) unread.remove();
+    // Show greeting after a short delay so it feels natural
+    setTimeout(() => {
+      cpAppend('bot', 'Hey there! 👋 Welcome to **Waffl Bleu**. I\'m your waffle assistant — ask me about our menu, stroop collection, savory cones, or how to open a franchise. What can I get for you? 🧇');
+    }, 600);
+  }, 1200);
+});
+
 // ── Chat logic ──
 const CP_API = 'https://amcana-chatbot-production.up.railway.app/chat/stream';
 const cpHistory = [];
